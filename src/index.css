@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   PSITS-CTU Main Design System CSS Tokens
+   See design.md for full specification
+   ============================================ */
+:root {
+  --color-primary: #0066FF;
+  --color-on-primary: #FFFFFF;
+  --color-primary-hover: #0052CC;
+  --color-primary-neutral: #B9D2FA;
+  --color-primary-pale: #F1F6FF;
+  --color-ink: #14213D;
+  --color-ink-deep: #0B3B8F;
+  --color-body: #3C445A;
+  --color-text-muted: #64748B;
+  --color-surface-white: #FFFFFF;
+  --color-bg-soft: #F1F6FF;
+  --color-positive: #2EAD4B;
+  --color-negative: #D03238;
+  --color-heritage-gold: #F5B800;
+}
+
+/* Base typography */
+@layer base {
+  body {
+    @apply bg-bg-light font-sans text-text-body antialiased;
+    font-size: 16px;
+    line-height: 1.5;
+    min-width: 320px;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-text-primary;
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+
+  h1 { @apply text-4xl leading-[1.02]; }
+  h2 { @apply text-3xl leading-[1.08]; }
+  h3 { @apply text-2xl leading-[1.15]; }
+  h4 { @apply text-xl leading-[1.2]; }
+
+  p { text-wrap: pretty; }
+
+  /* Accessible focus ring per design.md §8 */
+  *:focus-visible {
+    @apply outline-none ring-[3px] ring-primary/40 ring-offset-2;
+  }
+
+  a { @apply transition-all duration-200; }
+  a, button, [role='button'] { touch-action: manipulation; }
+  button:not(:disabled), [role='button'] { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  html { scroll-behavior: smooth; }
+
+  ::selection {
+    background: #CFE2FF;
+    color: #0B3B8F;
+  }
+}
+
+/* Utilities */
+@layer utilities {
+  /* Card hover lift, design.md §4 */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  .card-hover:hover {
+    transform: translateY(-2px);
+    @apply border-primary-neutral;
+  }
+
+  .page-wash {
+    background-color: var(--color-bg-soft);
+    background-image: radial-gradient(rgba(0, 102, 255, 0.10) 0.8px, transparent 0.8px);
+    background-size: 24px 24px;
+  }
+
+  .section-kicker {
+    @apply inline-flex items-center gap-2 text-sm font-semibold tracking-[0.08em] text-primary;
+  }
+
+  .content-shell {
+    @apply mx-auto w-full max-w-content px-4 sm:px-6 lg:px-8;
+  }
+
+  .surface-card {
+    @apply rounded-[1.5rem] bg-white p-6;
+  }
+
+  .display-title {
+    @apply font-display font-extrabold leading-[0.98] tracking-[-0.06em] text-text-primary;
+  }
+
+  .interactive-lift {
+    @apply transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-px;
+  }
+
+  .scroll-reveal {
+    opacity: 0;
+    transform: translate3d(0, 1.5rem, 0);
+    transition:
+      opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-reveal-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .scroll-reveal-delay-1 { transition-delay: 80ms; }
+  .scroll-reveal-delay-2 { transition-delay: 160ms; }
+  .scroll-reveal-delay-3 { transition-delay: 240ms; }
+
+}
+
+.about-card-stage {
+  perspective: 75rem;
+}
+
+.about-identity-card {
+  --card-pointer-x: 50%;
+  --card-pointer-y: 50%;
+  transform-style: preserve-3d;
+  transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2rem 5rem -3rem rgba(11, 59, 143, 0.72);
+}
+
+.about-identity-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    circle 14rem at var(--card-pointer-x) var(--card-pointer-y),
+    rgba(255, 255, 255, 0.2),
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity 240ms ease;
+  pointer-events: none;
+}
+
+.about-identity-card::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: calc(1.5rem - 1px);
+  pointer-events: none;
+}
+
+.about-identity-card-active {
+  transition-duration: 120ms;
+  will-change: transform;
+}
+
+.about-identity-card-active::before {
+  opacity: 1;
+}
+
+.about-card-layer {
+  z-index: 2;
+  transform-style: preserve-3d;
+}
+
+.about-card-layer-front {
+  transform: translateZ(2.5rem);
+}
+
+.about-card-layer-mark {
+  transform: translate3d(0, -50%, 4rem);
+}
+
+.hero-home {
+  background: var(--color-ink-deep);
+}
+
+.hero-home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    circle 32rem at 18% 38%,
+    rgba(0, 102, 255, 0.34),
+    rgba(185, 210, 250, 0.08) 48%,
+    transparent 74%
+  );
+  pointer-events: none;
+}
+
+.hero-home::after {
+  content: '';
+  position: absolute;
+  width: min(34rem, 45vw);
+  aspect-ratio: 1;
+  right: -8rem;
+  top: 10%;
+  z-index: 0;
+  border: 1px solid rgba(185, 210, 250, 0.13);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.hero-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-atmosphere-mount {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-mesh-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-atmosphere-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-copy {
+  text-shadow: none;
+}
+
+.hero-copy .section-kicker,
+.hero-title-accent {
+  color: var(--color-primary-neutral);
+}
+
+.hero-copy .display-title {
+  color: var(--color-on-primary);
+}
+
+.hero-description {
+  color: rgba(241, 246, 255, 0.84);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .about-identity-card,
+  .about-card-layer-front,
+  .about-card-layer-mark {
+    transform: none !important;
+  }
+}
