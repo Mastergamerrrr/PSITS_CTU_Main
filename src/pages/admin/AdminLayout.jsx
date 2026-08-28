@@ -30,7 +30,7 @@ export default function AdminLayout() {
       <aside className="hidden min-h-screen flex-col border-r border-primary-neutral/60 bg-white lg:flex">
         <div className="border-b border-primary-neutral/60 px-5 py-5">
           <Link to="/" className="flex items-center gap-3">
-            <img src="/psits-logo.svg" alt="" className="h-10 w-10" />
+            <img src="/psits.jpg" alt="" className="h-10 w-10 rounded-full object-cover" />
             <div>
               <p className="font-display font-extrabold text-text-primary">PSITS Admin</p>
               <p className="text-xs font-semibold text-primary">Officer portal</p>
@@ -53,7 +53,7 @@ export default function AdminLayout() {
         <header className="border-b border-primary-neutral/60 bg-white px-4 py-3 lg:hidden">
           <div className="flex items-center justify-between gap-4">
             <Link to="/" className="flex items-center gap-2 font-display font-extrabold text-text-primary">
-              <img src="/psits-logo.svg" alt="" className="h-9 w-9" /> PSITS Admin
+              <img src="/psits.jpg" alt="" className="h-9 w-9 rounded-full object-cover" /> PSITS Admin
             </Link>
             <Link to="/" className="text-sm font-semibold text-primary">Back to site</Link>
           </div>

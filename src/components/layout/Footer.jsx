@@ -24,7 +24,7 @@ export default function Footer() {
           <div>
             <Link to="/" className="inline-flex items-center gap-3">
               <span className="grid h-12 w-12 place-items-center rounded-[1.25rem] bg-white">
-                <img src="/psits-logo.svg" alt="" className="h-10 w-10" />
+                <img src="/psits.jpg" alt="" className="h-10 w-10 rounded-full object-cover" />
               </span>
               <div>
                 <p className="font-display text-lg font-extrabold tracking-tight">PSITS-CTU Main</p>

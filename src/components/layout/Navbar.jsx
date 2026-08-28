@@ -41,7 +41,7 @@ export default function Navbar() {
       <div className="content-shell">
         <nav className="flex h-20 items-center justify-between" aria-label="Main navigation">
           <Link to="/" className="group flex items-center gap-3" aria-label="PSITS-CTU Main home">
-            <img src="/psits-logo.svg" alt="" className="h-10 w-10" />
+            <img src="/psits.jpg" alt="" className="h-10 w-10 rounded-full object-cover" />
             <div className="leading-tight">
               <span className="block font-display text-lg font-extrabold tracking-[-0.04em] text-text-primary group-hover:text-primary">PSITS-CTU</span>
               <span className="block text-[0.65rem] font-semibold tracking-[0.12em] text-primary">Main Campus</span>

@@ -52,7 +52,7 @@ export default function TiltIdentityCard() {
 
         <div className="about-card-layer about-card-layer-mark absolute inset-x-0 top-1/2 grid -translate-y-1/2 place-items-center">
           <div className="grid h-48 w-48 place-items-center rounded-full border border-white/20 bg-white/[0.06] sm:h-56 sm:w-56">
-            <img src="/psits-logo.svg" alt="PSITS emblem" className="h-28 w-28 sm:h-32 sm:w-32" />
+            <img src="/psits.jpg" alt="PSITS emblem" className="h-28 w-28 rounded-full object-cover sm:h-32 sm:w-32" />
           </div>
         </div>
 

@@ -27,7 +27,7 @@ export default function AdminLogin() {
         {/* Brand */}
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-3">
-            <img src="/psits-logo.svg" alt="PSITS logo" className="h-12 w-12 rounded-full" />
+            <img src="/psits.jpg" alt="PSITS logo" className="h-12 w-12 rounded-full object-cover" />
             <div className="text-left">
               <p className="font-display text-xl font-extrabold text-text-primary">PSITS-CTU Main</p>
               <p className="text-xs font-semibold tracking-[0.1em] text-primary">Officer portal</p>
