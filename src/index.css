@@ -101,6 +101,14 @@
     @apply transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-px;
   }
 
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
   .scroll-reveal {
     opacity: 0;
     transform: translate3d(0, 1.5rem, 0);
@@ -178,6 +186,28 @@
   transform: translate3d(0, -50%, 4rem);
 }
 
+.officer-card-stage {
+  perspective: 75rem;
+}
+
+.officer-flip-card {
+  transform-style: preserve-3d;
+  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.officer-flip-card-flipped {
+  transform: rotateY(180deg);
+}
+
+.officer-card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.officer-card-back {
+  transform: rotateY(180deg);
+}
+
 .hero-home {
   background: var(--color-ink-deep);
 }
@@ -237,21 +267,212 @@
   height: 100%;
 }
 
+.hero-static-art {
+  display: none;
+  position: absolute;
+  right: max(7vw, 3rem);
+  top: 50%;
+  width: min(35vw, 30rem);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+}
+
+.hero-atmosphere-static .hero-static-art {
+  display: block;
+}
+
+.hero-atmosphere-static .hero-atmosphere-mount,
+.hero-atmosphere-static .hero-mesh-canvas {
+  display: none;
+}
+
+.hero-static-shell,
+.hero-static-core,
+.hero-static-orbit,
+.hero-static-node {
+  position: absolute;
+  display: block;
+}
+
+.hero-static-shell {
+  inset: 15%;
+  border: 1px solid rgba(185, 210, 250, 0.4);
+  border-radius: 43% 57% 52% 48% / 55% 44% 56% 45%;
+  background: rgba(185, 210, 250, 0.1);
+  transform: rotate(12deg);
+}
+
+.hero-static-core {
+  inset: 30%;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 38% 62% 48% 52% / 55% 42% 58% 45%;
+  background: radial-gradient(circle at 32% 26%, #B9D2FA 0, #0066FF 48%, #0052CC 100%);
+  transform: rotate(-18deg);
+}
+
+.hero-static-orbit {
+  left: 50%;
+  top: 50%;
+  width: 96%;
+  height: 42%;
+  border: 2px solid rgba(255, 255, 255, 0.78);
+  border-radius: 50%;
+}
+
+.hero-static-orbit-one {
+  transform: translate(-50%, -50%) rotate(20deg);
+}
+
+.hero-static-orbit-two {
+  border-color: rgba(245, 184, 0, 0.9);
+  transform: translate(-50%, -50%) rotate(-25deg);
+}
+
+.hero-static-node {
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 2px solid rgba(185, 210, 250, 0.68);
+  border-radius: 9999px;
+  background: white;
+}
+
+.hero-static-node-one { left: 10%; top: 43%; }
+.hero-static-node-two { right: 11%; top: 35%; }
+.hero-static-node-three { left: 29%; bottom: 12%; }
+.hero-static-node-four { right: 27%; top: 11%; }
+.hero-static-node-signal {
+  right: 5%;
+  bottom: 28%;
+  width: 1rem;
+  height: 1rem;
+  border-color: rgba(255, 209, 26, 0.72);
+  background: #F5B800;
+}
+
 .hero-copy {
   text-shadow: none;
 }
 
-.hero-copy .section-kicker,
-.hero-title-accent {
+.hero-copy .section-kicker {
   color: var(--color-primary-neutral);
+}
+
+.hero-title-accent {
+  color: var(--color-on-primary);
+  text-shadow:
+    0.018em 0.018em 0 var(--color-primary-neutral),
+    0.036em 0.036em 0 rgba(143, 181, 244, 0.96),
+    0.054em 0.054em 0 var(--color-primary),
+    0.072em 0.072em 0 rgba(0, 82, 204, 0.9),
+    0 0.18em 0.34em rgba(4, 25, 72, 0.34);
 }
 
 .hero-copy .display-title {
   color: var(--color-on-primary);
+  line-height: 1.06;
 }
 
 .hero-description {
   color: rgba(241, 246, 255, 0.84);
+}
+
+.about-purpose-card {
+  transform: scale(1);
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 280ms ease-out,
+    background-color 280ms ease-out;
+  transform-origin: center;
+}
+
+.about-purpose-icon {
+  transform: rotate(0deg) scale(1);
+  transition:
+    transform 480ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 280ms ease-out;
+}
+
+.about-value-card {
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 280ms ease-out;
+}
+
+.about-value-orbit {
+  position: absolute;
+  width: 13rem;
+  aspect-ratio: 1;
+  right: -5rem;
+  top: -6rem;
+  border: 1px solid currentColor;
+  border-radius: 9999px;
+  color: rgba(0, 102, 255, 0.16);
+  transform: scale(0.82) rotate(-12deg);
+  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bg-bg-dark .about-value-orbit,
+.bg-primary .about-value-orbit {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.about-value-icon {
+  transform: rotate(-7deg) scale(0.94);
+  transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .about-purpose-card:hover {
+    border-color: var(--color-primary);
+    transform: scale(1.025);
+    will-change: transform;
+  }
+
+  .about-purpose-card:hover .about-purpose-icon {
+    transform: rotate(7deg) scale(1.08);
+  }
+
+  .about-value-card:hover {
+    border-color: var(--color-primary);
+    transform: translate3d(0, -0.25rem, 0) scale(1.008);
+    will-change: transform;
+  }
+
+  .about-value-card:hover .about-value-orbit {
+    transform: scale(1) rotate(8deg);
+  }
+
+  .about-value-card:hover .about-value-icon {
+    transform: rotate(4deg) scale(1.08);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-static-art {
+    left: auto;
+    right: -2.25rem;
+    top: auto;
+    bottom: -3rem;
+    width: min(64vw, 15rem);
+    opacity: 0.62;
+    transform: none;
+  }
+}
+
+/* Campus Pulse enters as one coordinated sequence to keep motion purposeful. */
+.campus-pulse-item {
+  opacity: 0;
+  transform: translate3d(0, 0.75rem, 0);
+  transition:
+    opacity 420ms ease-out,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(160ms + (var(--pulse-index) * 90ms));
+}
+
+.campus-pulse-visible .campus-pulse-item {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -270,6 +491,41 @@
   .about-identity-card,
   .about-card-layer-front,
   .about-card-layer-mark {
+    transform: none !important;
+  }
+
+  .officer-flip-card,
+  .officer-card-back {
+    transform: none !important;
+  }
+
+  .officer-card-back {
+    display: none;
+  }
+
+  .officer-flip-card-flipped .officer-card-front {
+    display: none;
+  }
+
+  .officer-flip-card-flipped .officer-card-back {
+    display: flex;
+  }
+
+  .campus-pulse-item {
+    opacity: 1;
+    transform: none;
+  }
+
+  .about-purpose-card,
+  .about-purpose-card:hover,
+  .about-purpose-icon,
+  .about-purpose-card:hover .about-purpose-icon,
+  .about-value-card,
+  .about-value-card:hover,
+  .about-value-orbit,
+  .about-value-card:hover .about-value-orbit,
+  .about-value-card:hover .about-value-icon,
+  .about-value-icon {
     transform: none !important;
   }
 }

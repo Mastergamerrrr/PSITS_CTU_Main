@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm run check:officer-images",
     "build": "vite build",
     "check:hero-framing": "node scripts/check-hero-framing.mjs",
+    "check:hero-performance": "node scripts/check-hero-performance.mjs",
+    "check:officer-images": "node scripts/check-officer-images.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

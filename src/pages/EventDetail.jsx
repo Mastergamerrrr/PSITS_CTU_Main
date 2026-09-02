@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import {
-  Calendar, MapPin, Users, Clock, ArrowLeft, AlertCircle,
+  Calendar, MapPin, Users, Clock, ArrowLeft, ArrowRight, AlertCircle,
 } from 'lucide-react';
 import { events } from '../data/mockData';
 import Badge from '../components/ui/Badge';
@@ -43,7 +43,7 @@ export default function EventDetail() {
     <div className="bg-bg-light">
 
       {/* Header */}
-      <section className="page-wash py-16 sm:py-20">
+      <section className="page-wash py-10 sm:py-14 lg:py-16">
         <div className="content-shell">
           <Link
             to="/events"
@@ -52,45 +52,58 @@ export default function EventDetail() {
             <ArrowLeft size={14} /> All Events
           </Link>
 
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <Badge category={event.category} />
-            {event.status === 'upcoming' && event.registrationOpen && (
-              <span className="rounded-full border border-secondary bg-secondary/15 px-3 py-1 text-xs font-semibold text-text-primary">
-                Registration open
-              </span>
-            )}
-            {event.status === 'past' && (
-              <span className="rounded-full border border-primary-neutral bg-white px-3 py-1 text-xs font-medium text-text-muted">
-                Past event
-              </span>
-            )}
-          </div>
-
-          <h1 className="display-title mb-6 max-w-4xl text-[clamp(2.8rem,7vw,5rem)]">
-            {event.title}
-          </h1>
-
-          <div className="flex flex-wrap gap-5 text-text-muted text-sm">
-            <div className="flex items-center gap-2">
-              <Calendar size={15} className="text-primary" />
-              <span>{formatDate(event.date)}</span>
-            </div>
-            {event.time && (
-              <div className="flex items-center gap-2">
-                <Clock size={15} className="text-primary" />
-                <span>{event.time}</span>
+          <div className="grid items-center gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+            <div className="min-w-0">
+              <div className="mb-4 flex flex-wrap items-center gap-3">
+                <Badge category={event.category} />
+                {event.status === 'upcoming' && event.registrationOpen && (
+                  <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-800">
+                    Registration open
+                  </span>
+                )}
+                {event.status === 'past' && (
+                  <span className="rounded-full border border-primary-neutral bg-white px-3 py-1 text-xs font-medium text-text-muted">
+                    Event concluded
+                  </span>
+                )}
               </div>
-            )}
-            <div className="flex items-center gap-2">
-              <MapPin size={15} className="text-primary" />
-              <span>{event.venue}</span>
-            </div>
-            {event.maxParticipants && (
-              <div className="flex items-center gap-2">
-                <Users size={15} className="text-primary" />
-                <span>Max {event.maxParticipants} participants</span>
+
+              <h1 className="display-title max-w-3xl text-[clamp(2.7rem,6vw,4.6rem)]">
+                {event.title}
+              </h1>
+
+              <div className="mt-6 grid gap-3 text-sm text-text-muted sm:grid-cols-2">
+                <div className="flex items-center gap-2">
+                  <Calendar size={15} className="text-primary" />
+                  <span>{formatDate(event.date)}</span>
+                </div>
+                {event.time && (
+                  <div className="flex items-center gap-2">
+                    <Clock size={15} className="text-primary" />
+                    <span>{event.time}</span>
+                  </div>
+                )}
+                <div className="flex items-center gap-2">
+                  <MapPin size={15} className="text-primary" />
+                  <span>{event.venue}</span>
+                </div>
+                {event.maxParticipants && (
+                  <div className="flex items-center gap-2">
+                    <Users size={15} className="text-primary" />
+                    <span>Up to {event.maxParticipants} participants</span>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
+
+            <div className="aspect-[4/3] min-w-0 overflow-hidden rounded-[1.5rem] bg-white">
+              <img
+                src={event.image}
+                alt="Students collaborating during a campus technology activity"
+                className="h-full w-full object-cover"
+                fetchPriority="high"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -192,8 +205,8 @@ export default function EventDetail() {
 
               <div className="mt-5 pt-5 border-t border-border-light">
                 <p className="text-xs text-text-muted mb-1">Have questions?</p>
-                <Link to="/contact" className="text-xs text-primary hover:underline">
-                  Contact us →
+                <Link to="/contact" className="inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary-hover">
+                  Contact us <ArrowRight size={13} aria-hidden="true" />
                 </Link>
               </div>
             </div>

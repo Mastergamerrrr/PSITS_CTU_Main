@@ -1,5 +1,18 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getHeroSceneLayout } from './hero-scene-layout';
+import { getHeroRenderProfile, shouldUseStaticHero } from './hero-performance';
+
+function detectStaticHero() {
+  if (typeof window === 'undefined') return true;
+
+  const connection = navigator.connection;
+  return shouldUseStaticHero({
+    reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    saveData: connection?.saveData === true,
+    deviceMemory: navigator.deviceMemory,
+    hardwareConcurrency: navigator.hardwareConcurrency,
+  });
+}
 
 /**
  * Ambient hero artwork. The model moves independently while pointer movement
@@ -8,8 +21,24 @@ import { getHeroSceneLayout } from './hero-scene-layout';
 export default function HeroNetwork() {
   const mountRef = useRef(null);
   const meshRef = useRef(null);
+  const [staticMode, setStaticMode] = useState(detectStaticHero);
 
   useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const connection = navigator.connection;
+    const updateMode = () => setStaticMode(detectStaticHero());
+
+    reducedMotion.addEventListener('change', updateMode);
+    connection?.addEventListener?.('change', updateMode);
+    return () => {
+      reducedMotion.removeEventListener('change', updateMode);
+      connection?.removeEventListener?.('change', updateMode);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (staticMode) return undefined;
+
     let cancelled = false;
     let disposeScene = () => {};
 
@@ -28,6 +57,11 @@ export default function HeroNetwork() {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 50);
         camera.position.set(0, 0, 8.4);
+        const compactViewport = window.matchMedia('(max-width: 767px)');
+        const initialRenderProfile = getHeroRenderProfile({
+          compactViewport: compactViewport.matches,
+          devicePixelRatio: window.devicePixelRatio,
+        });
 
         const renderer = new THREE.WebGLRenderer({
           alpha: true,
@@ -35,7 +69,7 @@ export default function HeroNetwork() {
           powerPreference: 'high-performance',
         });
         renderer.setClearColor(0x000000, 0);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        renderer.setPixelRatio(initialRenderProfile.pixelRatio);
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.08;
@@ -292,8 +326,13 @@ export default function HeroNetwork() {
           const bounds = mount.getBoundingClientRect();
           width = Math.max(1, Math.round(bounds.width));
           height = Math.max(1, Math.round(bounds.height));
+          const renderProfile = getHeroRenderProfile({
+            compactViewport: compactViewport.matches,
+            devicePixelRatio: window.devicePixelRatio,
+          });
+          renderer.setPixelRatio(renderProfile.pixelRatio);
           renderer.setSize(width, height, false);
-          const meshDpr = Math.min(window.devicePixelRatio, 1.5);
+          const meshDpr = renderProfile.pixelRatio;
           meshCanvas.width = Math.round(width * meshDpr);
           meshCanvas.height = Math.round(height * meshDpr);
           meshContext.setTransform(meshDpr, 0, 0, meshDpr, 0, 0);
@@ -364,9 +403,14 @@ export default function HeroNetwork() {
         }
         resize();
 
-        const render = () => {
+        let lastRenderTime = 0;
+        const render = (timestamp = 0) => {
           animationFrame = window.requestAnimationFrame(render);
           if (!isVisible || document.hidden) return;
+
+          const minimumFrameInterval = compactViewport.matches ? 1000 / 30 : 0;
+          if (minimumFrameInterval && timestamp - lastRenderTime < minimumFrameInterval) return;
+          lastRenderTime = timestamp;
 
           const delta = Math.min(clock.getDelta(), 0.05);
           if (!reducedMotion.matches) {
@@ -404,7 +448,9 @@ export default function HeroNetwork() {
           renderer.forceContextLoss();
           renderer.domElement.remove();
         };
-      } catch { /* The branded CSS background remains as the fallback. */ }
+      } catch {
+        if (!cancelled) setStaticMode(true);
+      }
     }
 
     setupScene();
@@ -412,10 +458,21 @@ export default function HeroNetwork() {
       cancelled = true;
       disposeScene();
     };
-  }, []);
+  }, [staticMode]);
 
   return (
-    <div className="hero-atmosphere" aria-hidden="true">
+    <div className={['hero-atmosphere', staticMode ? 'hero-atmosphere-static' : ''].join(' ')} aria-hidden="true">
+      <div className="hero-static-art">
+        <span className="hero-static-shell" />
+        <span className="hero-static-core" />
+        <span className="hero-static-orbit hero-static-orbit-one" />
+        <span className="hero-static-orbit hero-static-orbit-two" />
+        <span className="hero-static-node hero-static-node-one" />
+        <span className="hero-static-node hero-static-node-two" />
+        <span className="hero-static-node hero-static-node-three" />
+        <span className="hero-static-node hero-static-node-four" />
+        <span className="hero-static-node hero-static-node-signal" />
+      </div>
       <div ref={mountRef} className="hero-atmosphere-mount" />
       <canvas ref={meshRef} className="hero-mesh-canvas" />
     </div>

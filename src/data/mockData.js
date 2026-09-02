@@ -16,7 +16,8 @@ export const events = [
     venue: 'CCICT Building, Room 301',
     description:
       'A 24-hour hackathon challenging teams to build innovative web applications addressing real-world problems in education and healthcare. Open to all CCICT students. Teams of 3-5 members.',
-    image: null,
+    image: '/events/hackathon-campus.jpg',
+    featured: true,
     registrationOpen: true,
     registrationDeadline: '2026-09-10',
     maxParticipants: 80,
@@ -33,7 +34,7 @@ export const events = [
     venue: 'CCICT Computer Lab 1',
     description:
       'Three-day intensive Python bootcamp covering fundamentals, data structures, OOP, and a mini-project. Certificate of completion will be issued to all participants who complete all sessions.',
-    image: null,
+    image: '/events/workshop-learning.jpg',
     registrationOpen: true,
     registrationDeadline: '2026-09-02',
     maxParticipants: 40,
@@ -50,7 +51,7 @@ export const events = [
     venue: 'CCICT AVR',
     description:
       'Intra-department quiz bowl covering networking, programming, data structures, and general IT trivia. Top 3 teams advance to the university-wide finals.',
-    image: null,
+    image: '/events/quiz-bowl-campus.jpg',
     registrationOpen: false,
     registrationDeadline: null,
     maxParticipants: 60,
@@ -67,7 +68,7 @@ export const events = [
     venue: 'Online (Figma Workspace)',
     description:
       'Remote design competition where participants redesign a provided mobile app screen to improve usability and aesthetics. Judged by industry mentors from local tech companies.',
-    image: null,
+    image: '/events/workshop-learning.jpg',
     registrationOpen: false,
     registrationDeadline: '2026-07-20',
     maxParticipants: 50,
@@ -84,7 +85,7 @@ export const events = [
     venue: 'CCICT AVR & Online',
     description:
       'Guest lecture by industry professionals on the intersection of artificial intelligence and healthcare, covering diagnostics, medical imaging, and ethical considerations.',
-    image: null,
+    image: '/events/workshop-learning.jpg',
     registrationOpen: false,
     registrationDeadline: null,
     maxParticipants: 120,
@@ -101,7 +102,7 @@ export const events = [
     venue: 'CTU Main Grounds',
     description:
       'Annual general assembly and org night featuring presentations of the org roadmap, officer introductions, games, food, and community building for all CCICT students.',
-    image: null,
+    image: '/events/hackathon-campus.jpg',
     registrationOpen: false,
     registrationDeadline: null,
     maxParticipants: 200,
@@ -160,20 +161,72 @@ export const announcements = [
 ];
 
 // ── Officers ─────────────────────────────────────────────────────────────────
-export const officers = [
-  { id: 'o1',  name: 'Alex M. Reyes',          position: 'President',                    year: '4th Year BSIT', avatar: null },
-  { id: 'o2',  name: 'Bianca T. Santos',        position: 'Vice President, Internal',    year: '4th Year BSCS', avatar: null },
-  { id: 'o3',  name: 'Carlo J. Mendoza',        position: 'Vice President, External',    year: '3rd Year BSIT', avatar: null },
-  { id: 'o4',  name: 'Diana R. Cruz',           position: 'Secretary',                    year: '3rd Year BSIT', avatar: null },
-  { id: 'o5',  name: 'Emil A. Torres',          position: 'Treasurer',                    year: '3rd Year BSCS', avatar: null },
-  { id: 'o6',  name: 'Faith G. Lim',            position: 'Auditor',                      year: '2nd Year BSIT', avatar: null },
-  { id: 'o7',  name: 'Gerard P. Bautista',      position: 'P.R.O.',                       year: '3rd Year BSIT', avatar: null },
-  { id: 'o8',  name: 'Hannah N. Garcia',        position: 'Business Manager',             year: '3rd Year BSCS', avatar: null },
-  { id: 'o9',  name: 'Ivan C. Villanueva',      position: 'Technical Director',           year: '4th Year BSIT', avatar: null },
-  { id: 'o10', name: 'Julia M. Delos Reyes',    position: 'Events Coordinator',           year: '2nd Year BSIT', avatar: null },
-  { id: 'o11', name: 'Kenneth L. Aquino',       position: 'Historian / Documentarian',    year: '2nd Year BSCS', avatar: null },
-  { id: 'o12', name: 'Lovely Anne B. Flores',   position: 'Muse',                         year: '3rd Year BSIT', avatar: null },
+// Names, academic details, and portrait paths are intentionally blank until
+// the official S.Y. 2026-2027 roster is supplied.
+export const officerGroups = [
+  {
+    id: 'executives',
+    label: 'Executives',
+    description: 'The officers responsible for chapter direction, governance, operations, and accountability.',
+    members: [
+      { id: 'exec-01', name: null, position: 'President', year: null, avatar: null, summary: 'Leads the chapter, sets its direction, and coordinates the executive council.' },
+      { id: 'exec-02', name: null, position: 'Internal Vice-President', year: null, avatar: null, summary: 'Oversees internal operations, member coordination, and chapter programs.' },
+      { id: 'exec-03', name: null, position: 'External Vice-President', year: null, avatar: null, summary: 'Builds partnerships and represents the chapter in external engagements.' },
+      { id: 'exec-04', name: null, position: 'General Secretary', year: null, avatar: null, summary: 'Maintains official records, correspondence, minutes, and organizational documents.' },
+      { id: 'exec-05', name: null, position: 'Treasurer', year: null, avatar: null, summary: 'Manages budgets, financial records, and the responsible use of chapter funds.' },
+      { id: 'exec-06', name: null, position: 'Auditor', year: null, avatar: null, summary: 'Reviews financial activity and helps keep chapter resources transparent and accountable.' },
+      { id: 'exec-07', name: null, position: 'Communication Officer', year: null, avatar: null, summary: 'Coordinates official announcements and keeps members informed across channels.' },
+      { id: 'exec-08', name: null, position: 'Logistics Officer', year: null, avatar: null, summary: 'Prepares venues, equipment, materials, and operational requirements for activities.' },
+      { id: 'exec-09', name: null, position: 'Logistics Officer', year: null, avatar: null, summary: 'Prepares venues, equipment, materials, and operational requirements for activities.' },
+      { id: 'exec-10', name: null, position: 'Logistics Officer', year: null, avatar: null, summary: 'Prepares venues, equipment, materials, and operational requirements for activities.' },
+      { id: 'exec-11', name: null, position: 'Logistics Officer', year: null, avatar: null, summary: 'Prepares venues, equipment, materials, and operational requirements for activities.' },
+      { id: 'exec-12', name: null, position: 'Site Administrator', year: null, avatar: null, summary: 'Maintains the chapter website and supports accurate, timely portal content.' },
+      { id: 'exec-13', name: null, position: 'Site Administrator', year: null, avatar: null, summary: 'Maintains the chapter website and supports accurate, timely portal content.' },
+    ],
+  },
+  {
+    id: 'committees',
+    label: 'Committees',
+    description: 'The creative, technical, documentation, and events teams that turn chapter plans into student experiences.',
+    members: [
+      { id: 'committee-01', name: null, position: 'Secretariat', year: null, avatar: null, summary: 'Supports documentation, attendance, records, and administrative coordination.' },
+      { id: 'committee-02', name: null, position: 'Media and Technology Director', year: null, avatar: null, summary: 'Directs the chapter’s media systems, digital platforms, and technology initiatives.' },
+      { id: 'committee-03', name: null, position: 'Graphics and Designs', year: null, avatar: null, summary: 'Creates clear, consistent visuals for chapter programs, campaigns, and announcements.' },
+      { id: 'committee-04', name: null, position: 'Graphics and Designs', year: null, avatar: null, summary: 'Creates clear, consistent visuals for chapter programs, campaigns, and announcements.' },
+      { id: 'committee-05', name: null, position: 'Graphics and Designs', year: null, avatar: null, summary: 'Creates clear, consistent visuals for chapter programs, campaigns, and announcements.' },
+      { id: 'committee-06', name: null, position: 'Graphics and Designs', year: null, avatar: null, summary: 'Creates clear, consistent visuals for chapter programs, campaigns, and announcements.' },
+      { id: 'committee-07', name: null, position: 'Photography and Videography', year: null, avatar: null, summary: 'Documents chapter activities through thoughtful event photography and video.' },
+      { id: 'committee-08', name: null, position: 'Photography and Videography', year: null, avatar: null, summary: 'Documents chapter activities through thoughtful event photography and video.' },
+      { id: 'committee-09', name: null, position: 'Event Director', year: null, avatar: null, summary: 'Leads event planning and coordinates teams from preparation through completion.' },
+      { id: 'committee-10', name: null, position: 'Event Officer', year: null, avatar: null, summary: 'Supports event planning, participant coordination, and on-site program delivery.' },
+      { id: 'committee-11', name: null, position: 'Event Officer', year: null, avatar: null, summary: 'Supports event planning, participant coordination, and on-site program delivery.' },
+      { id: 'committee-12', name: null, position: 'Technical Support Director', year: null, avatar: null, summary: 'Directs technical preparation and support for chapter programs and platforms.' },
+      { id: 'committee-13', name: "Jian Kris D. Laborte", position: 'Technical Support Officer', year: "3rd Year BSIT", avatar: "/officers/Jian1.webp", summary: 'Provides equipment, software, and troubleshooting support during chapter activities.' },
+      { id: 'committee-14', name: null, position: 'Technical Support Officer', year: null, avatar: null, summary: 'Provides equipment, software, and troubleshooting support during chapter activities.' },
+    ],
+  },
+  {
+    id: 'representatives',
+    label: 'Representatives',
+    description: 'The student voices connecting each year level and schedule with the wider PSITS community.',
+    members: [
+      { id: 'representative-01', name: null, position: '1st Year Representative (Day)', year: null, avatar: null, summary: 'Represents first-year day students and brings their concerns and ideas to the council.' },
+      { id: 'representative-02', name: null, position: '1st Year Representative (Night)', year: null, avatar: null, summary: 'Represents first-year night students and brings their concerns and ideas to the council.' },
+      { id: 'representative-03', name: null, position: '2nd Year Representative (Day)', year: null, avatar: null, summary: 'Represents second-year day students and keeps their cohort connected to chapter programs.' },
+      { id: 'representative-04', name: null, position: '2nd Year Representative (Night)', year: null, avatar: null, summary: 'Represents second-year night students and keeps their cohort connected to chapter programs.' },
+      { id: 'representative-05', name: null, position: '3rd Year Representative (Day)', year: null, avatar: null, summary: 'Represents third-year day students and communicates opportunities, feedback, and concerns.' },
+      { id: 'representative-06', name: null, position: '4th Year Representative (Day)', year: null, avatar: null, summary: 'Represents fourth-year day students and communicates opportunities, feedback, and concerns.' },
+      { id: 'representative-07', name: null, position: "Representatives' Director", year: null, avatar: null, summary: 'Coordinates the year-level representatives and brings their shared priorities to the council.' },
+    ],
+  },
 ];
+
+export const officers = officerGroups.flatMap(({ id: group, members }) => (
+  members.map((member) => ({
+    ...member,
+    group,
+  }))
+));
 
 // ── GitHub Projects ───────────────────────────────────────────────────────────
 export const githubProjects = [

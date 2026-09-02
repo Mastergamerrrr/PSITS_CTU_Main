@@ -161,16 +161,16 @@ export default function GetInvolved() {
   }, [pinned]);
 
   return (
-    <section ref={sectionRef} className="relative bg-bg-light" aria-labelledby="get-involved-title">
+    <section id="get-involved" ref={sectionRef} className="relative bg-bg-light" aria-labelledby="get-involved-title">
       <div className={pinned ? 'sticky top-20 h-[calc(100svh-5rem)] overflow-hidden' : 'py-20 sm:py-24'}>
-        <div className={['content-shell grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16', pinned ? 'h-full py-16' : ''].join(' ')}>
-          <div className="flex flex-col justify-center lg:pr-4">
+        <div className={['content-shell grid gap-12 lg:grid-cols-[1.28fr_0.72fr] lg:gap-16', pinned ? 'h-full py-16' : ''].join(' ')}>
+          <div className="flex flex-col justify-center lg:order-2 lg:pl-4">
             <p className="section-kicker">Get involved</p>
             <h2 id="get-involved-title" className="mt-4 max-w-md text-4xl sm:text-5xl lg:text-6xl">
               There’s more than one way in.
             </h2>
             <p className="mt-5 max-w-md leading-7 text-text-body">
-              Start where you are—join, learn, build, or simply stay in the loop. Each path leads back to the same student community.
+              Start where you are. Join, learn, build, or simply stay in the loop. Each path leads back to the same student community.
             </p>
 
             <div className="mt-8 flex items-center gap-4">
@@ -190,12 +190,12 @@ export default function GetInvolved() {
                 <span className="relative h-16 w-px overflow-hidden bg-primary-neutral">
                   <span ref={progressRef} className="absolute inset-0 origin-top bg-primary" />
                 </span>
-                Scroll to explore
+                Four ways to participate
               </div>
             )}
           </div>
 
-          <div className={pinned ? 'min-h-0 overflow-visible' : ''}>
+          <div className={['lg:order-1', pinned ? 'min-h-0 overflow-visible' : ''].join(' ')}>
             <div ref={trackRef} className="grid gap-5 will-change-transform sm:gap-6">
               {opportunities.map((opportunity) => (
                 <OpportunityCard key={opportunity.to} opportunity={opportunity} />
